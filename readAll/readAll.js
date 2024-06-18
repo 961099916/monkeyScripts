@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         阅读全文、自动展开全文、自动移除万恶弹框
 // @namespace    http://tampermonkey.net/
-// @version      2.18.1
+// @version      2.18.2
 // @require      https://greasyfork.org/scripts/415668-zmquery3-5-1/code/zmQuery351.js?version=866815
 // @description  【非自动关注】【自用，长期维护】【功能有】1. 阅读全文网站支持：CSDN、github.io、xz577.com、iteye.com、720ui.com、cloud.tencent.com、新浪、头条、网易新闻、腾讯新闻、51CTO、知乎、果壳科技（移动版）、awesomes.cn、javascriptcn.com、人民日报（移动版）、凤凰网、虎扑移动版、百度经验、360文档（个人图书馆）、乐居买房（移动版）、电子发烧友网（PC、移动版）、悟空问答（PC、移动版）、百家号、百度文章、简书移动版、搜狐移动版、goodreads（PC、移动版）、百度文库(移动、PC版)、36氪移动版、弟弟快看<br>备注： 反馈问题的小伙伴们请附加上有问题的网址链接哈
 // @author       zhengmingliang
@@ -49,6 +49,7 @@
 // @match        *://www.hi-linux.com/posts/*
 // @match        *://www.ddkk.com/zhuanlan/*
 // @match        *://ddkk.com/zhuanlan/*
+// @match        *://www.tapd.cn/*
 // @grant        none
 // ==/UserScript==
 
@@ -505,6 +506,16 @@
             console.log("轮训检测...")
             if ($$$(".ztt_more").length > 0) {
                 readAllRule1(".ztt_more", ".ztt_outer",true)
+                clearInterval(interval)
+            }
+        }, 1000)
+    }else if (href.indexOf('tapd.cn') != -1) { // tapd
+        console.log("检测到tapd.cn。。。。")
+        let interval = setInterval(function () {
+            console.log("轮训检测...")
+            if ($$$(".company-renew-dialog").length > 0) {
+                readAllRule1(".company-renew-dialog", ".company-renew-dialog",true)
+                 readAllRule1(".v-modal", ".v-modal",true)
                 clearInterval(interval)
             }
         }, 1000)
