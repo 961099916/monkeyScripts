@@ -42,6 +42,7 @@
 // @match        *://*.javazhiyin.com/*
 // @match        *://m.hupu.com/bbs/*
 // @match        *://bugstack.cn/md/*
+// @match        *://xiaolincoding.com/*
 // @match        *://wap.peopleapp.com/article/*
 // @match        *://jingyan.baidu.com/article/*
 // @match        *://*.ifeng.com/c/*
@@ -485,6 +486,15 @@
             }
             count ++;
             if(count > 50){
+                clearInterval(interval)
+            }
+        }, 1000)
+        // Your code here...
+    } else if (href.indexOf('xiaolincoding.com') != -1) { //检测到xiaolincoding
+        console.log("检测到xiaolincoding.com。。。。")
+        let interval = setInterval(function () {
+            if ($$$("#readmore-btn").length > 0) {
+                readAllRule1("#readmore-btn", ".theme-default-content")
                 clearInterval(interval)
             }
         }, 1000)
